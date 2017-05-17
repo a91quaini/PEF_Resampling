@@ -137,7 +137,10 @@ Idea: force components of the Lasso estimator $\hat{\beta}_n$ to be exactly zero
 To this end:
 
 1. Form a sequence $\{a_n\}$ of real numbers such that $a_n + (n^{-1/2} log(n)) a_n^{-1} \rightarrow 0$ asymptotically.
-2. Threshold the components of the Lasso estimator $\beta_n$ at $a_n$, and define the modified Lasso estimator $\tilde{\beta}_{n,j} = \beta_{n,j} \mathbbm{1}(\beta_{n,j} \geq a_n)$ for $j=1,...,p$.
+2. Threshold the components of the Lasso estimator $\beta_n$ at $a_n$, and define the modified Lasso estimator 
+\begin{equation}
+\tilde{\beta}_{n,j} = \beta_{n,j} \mathbbm{1}(\beta_{n,j} \geq a_n), \text{for } j=1,...,p.
+\end{equation}
 
 
 ## The Modified Bootstrap method
@@ -147,7 +150,22 @@ Note that with probability tending to 1 (as $n \rightarrow \infty$):
 * $|\hat{\beta}_{n,j}| = |\beta_j| + O(n^{-1/2}) > |\beta_j|/2 \geq a_n$, for a nonzero component $\beta_j$
 * $|\hat{\beta}_{n,j}| = |\beta_j| + O(n^{-1/2}) = O(n^{-1/2}) \in [-a_n, a_n]$, for a zero component $\beta_j$
 
+Then proceed as before:
+
 3. Consider the set of centered residuals $R = \{ r_i = \tilde{r}_i - \bar{r}, \text{for } i=1,...,n \}$, where $\bar{r} = n^{-1} \sum_i \tilde{r}_i$ and $\tilde{r}_i$'s are the residuals of the modified Lasso fit on the original sample.
 4. Construct $B$ bootstrap samples of size $n$ selecting with replacement form $R$: $R_b^{**} = \{r_{i,b}^{**}: i=1,...,n \}$ and compute $y_{i,b}^{**} = x_i^T \tilde{\beta}_n + r_{i,b}^{**}$, for $i=1,...,n, \text{and } b=1,...,B$, where $\tilde{\beta}_n$ is the modified Lasso estimator for the original sample.
 
 
+## The Modified Bootstrap method
+
+5. Compute the bootstrap version of $T_n = n^{1/2}(\hat{\beta}_n - \beta)$, i.e. $T_n^{**} = n^{1/2}(\hat{\beta}_{n,b}^{**} - \tilde{\beta}_n)$, where $\hat{\beta}_{n,b}^{**}$ is the Lasso estimator for bootstrap sample $b$. 
+6. The residual Bootstrap estimator of the distribution $G_n$ of $T_n$ is $\tilde{G}_n(B) = P_{**}(T_n^{**} \in B)$, where $B \in \mathscr{B}(R^p)$ and $P_{**}$ is the probability of $T_n^{**}$ given errors $\epsilon_i$'s.
+
+Remarks:
+
+* Centering the residuals ensures the Bootstrap analogue of the condition $E[e_i]=0$
+* A rescaling factor $(1 - p/n) - 1/2$ is sometimes used (see Efron [1982]) to improve finite sample accuracy
+* It is possible to replace $\hat{\beta}_n$ by any other $\sqrt{n}$-consistent estimator of $\beta$, e.g. least squares
+
+
+## Bootstrapping the Lasso estimator
