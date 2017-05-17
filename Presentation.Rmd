@@ -169,3 +169,27 @@ Remarks:
 
 
 ## Bootstrapping the Lasso estimator
+
+#### Consistency and the distributional approximation
+
+*Theorem 1: Consistency of modified Bootstrap*
+
+Assume: 
+
+* (C1) $n^{-1} \sum_i x_ix_i^T \rightarrow C,$ p.d. matrix. Furthemore $n^{-1} \sum_i \|x_i\|^3 \rightarrow O(1)$.
+* (C2) $\lambda_n n^{-1/2} \rightarrow \lambda_0 \geq 0$.
+* (C3) errors $\epsilon_i$'s are iid with $E[\epsilon_i]=0$ and $VAR[\epsilon_i]=\sigma^2<\infty$.
+
+Then: $$\mathscr{P}(\tilde{G}_n, G_n) \rightarrow 0, \text{as } n \rightarrow \infty, \text{with probability } 1,$$
+
+where $\mathscr{P}(\cdot,\cdot)$ denotes the Prohorov probability metric.
+
+
+## Bootstrapping the Lasso estimator
+
+Remarks:
+
+* Theorem 1 states strong consistency of the modified Bootstrap distribution estimator
+*  Chatterjee and Lahiri [2010] shows that under the same set of regularity assumptions, if $\beta$ has at least one zero component, then
+$$ρ( Gn(·), Gn(·)) ̸→ 0 in probability, as n,$$
+
