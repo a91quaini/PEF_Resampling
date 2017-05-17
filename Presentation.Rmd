@@ -190,6 +190,8 @@ where $\mathscr{P}(\cdot,\cdot)$ denotes the Prohorov probability metric.
 Remarks:
 
 * Theorem 1 states strong consistency of the modified Bootstrap distribution estimator
-*  Chatterjee and Lahiri [2010] shows that under the same set of regularity assumptions, if $\beta$ has at least one zero component, then
-$$ρ( Gn(·), Gn(·)) ̸→ 0 in probability, as n,$$
+* Chatterjee and Lahiri [2010] shows that under the same set of regularity assumptions, if $\beta$ has at least one zero component and if $\hat{G}_n$ is the residual bootstrap estimate of $G_n$, then
+$$\mathscr{P}(\hat{G}_n, G_n) \rightarrow 0, \text{in probability, as } n \rightarrow \infty$$
+* From Theorem 1 it follows that the modified bootstrap method can be used to approximate the distribution of the Lasso estimator $T_n$ for any $\beta \in R^p$. Hence, it can be used to construct valid large sample confidence set estimators of $\beta$
+
 
