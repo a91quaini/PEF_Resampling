@@ -41,7 +41,7 @@ knitr::opts_chunk$set(echo = FALSE)
 4. Bootstrapping the Adaptive Lasso estimator
     + A residual Bootstrap method for the Adaptive Lasso estimator
     + Main results
-5. Data-based choice of the regularization parameter for the Lasso estimator
+5. Data-based choice of the regularization parameter
     + The optimal regularization parameter
     + Data-based selection of the optimal regularization parameter
     + Jackknife-After-Bootstrap based choice of the regularization parameter
@@ -326,6 +326,56 @@ Assume (C1), and (C3) hold and suppose
 \end{equation}
 Then,
 \begin{equation}
+\label{adaLasso_CI}
 \mathscr{P}(\hat{H}_n, H_n) \overset{P}\rightarrow 0, \quad \text{as } n \rightarrow \infty,
 \end{equation}
 
+Remarks:
+\begin{itemize}
+\item (\ref{adaLasso_CI}) can be used to construct valid confidence intervals for $\beta$
+\item a corollary of the form of corollary 1 can be formulated for the adaptive Lasso residual bootstrap method
+\end{itemize}
+
+
+## Bootsrapping the Adaptive Lasso estimator
+
+\begin{itemize}
+\item estimation of the MSE of the adaptive Lasso estimator can be difficult
+\item adaptive Lasso residual Bootstrap method provides a consistent estimator of the MSE matrix of the scaled adaptie Lasso estimator $\breve{\beta}_n$ given by $MSE[\breve{T}_n] \equiv n E[(\breve{\beta}_n - \beta)(\breve{\beta}_n - \beta)^T]$
+\end{itemize}
+
+\textbf{Corollary 3}
+
+Assume (C1) and (C2) hold, Then:
+\begin{equation}
+MSE_*(\breve{T}_n^+) - MSE(\breve{T}_n) \overset{P}\rightarrow 0, \quad \text{as } n \rightarrow n.
+\end{equation}
+
+
+## Data-based choice of the regularization parameter
+
+#### The optimal regularization parameter
+
+Remarks:
+\begin{itemize}
+\item it can be shown that the distribution of $T_n$ depends on $\lambda_n$ only through $\lambda_0$
+\item note that $MSE(\hat{\beta}_n)$ can be expressed as $n^{-1}E\|T_n\|^2$ and that $n MSE(\hat{\beta}_n)$ converges to the $MSE$ of the limiting random variable $T_{\infty}$
+\item The effect of the penalization by $\lambda_n$ on the overall accuracy of $\hat{\beta}_n$ is reflected by its MSE
+\item for what comes next, consider the natural reparametrization $\lambda_n = \lambda_0 n^{1/2}, \lambda_0 \in [0, \infty)$
+\end{itemize}
+
+
+## Data-based choice of the regularization parameter
+
+Then define the \textbf{optimal penalization} parameter as
+\begin{equation}
+\lambda_0^{opt} \equiv \phi(\lambda_0)
+\end{equation}
+where $\phi(\lambda_0) = E\|T_{\infty}\|^2$.
+
+* Thus, choosing $\lambda_0 = \lambda_0^{opt}$ yelds a Lasso estimator that minimizes the $MSE$ in large samples.
+
+
+## Data-based choice of the regularization parameter
+
+#### Data-based selection of the optimal regularization parameter
