@@ -88,7 +88,7 @@ Results and proposals in Chatterjee and Lahiri [2011]:
     + show consistency under mild regularity conditions even when some of the underlying parameters are zero
 
 2. Confidence interval and testing
-    + the modified Bootstrap method provide consistent estimate of the variance of the Lasso estimator for both zero and non-zero parameter components
+    + the modified Bootstrap method provides consistent estimate of the variance of the Lasso estimator for both zero and non-zero parameter components
 
 
 ## Introduction
@@ -120,10 +120,11 @@ The residual Bootstrap method (standard in linear regression setting with nonran
 4. The residual Bootstrap estimator of the distribution $G_n$ of $T_n$ is $\hat{G}_n(B) = P_*(T_n^* \in B)$, where $B \in \mathscr{B}(R^p)$ and $P_*$ is the probability of $T_n^*$ given errors $\epsilon_i$'s.
 
 Chatterjee and Lahiri [2010] show that:
-
-* the estimators of the zero parameters fail to capture the target sign value, which is zero
-* hence $\hat{G}n$, instead of converging to the deterministic limit of $Gn$ converges weakly to a random probability measure
-* i.e. it fails to provide a valid approximation to $G_n$
+\begin{itemize}
+\item the estimators of the zero parameters fail to capture the target sign value, which is zero
+\item because of that, $\hat{G}n$, instead of converging to the deterministic limit of $Gn$ converges weakly to a random probability measure
+\item i.e. it fails to provide a valid approximation to $G_n$
+\end{itemize}
 
 
 ## The Modified Bootstrap method
@@ -147,8 +148,10 @@ To this end:
 
 Note that with probability tending to 1 (as $n \rightarrow \infty$):
 
-* $|\hat{\beta}_{n,j}| = |\beta_j| + O(n^{-1/2}) > |\beta_j|/2 \geq a_n$, for a nonzero component $\beta_j$
-* $|\hat{\beta}_{n,j}| = |\beta_j| + O(n^{-1/2}) = O(n^{-1/2}) \in [-a_n, a_n]$, for a zero component $\beta_j$
+\begin{itemize}
+\item $|\hat{\beta}_{n,j}| = |\beta_j| + O(n^{-1/2}) > |\beta_j|/2 \geq a_n$, for a nonzero component $\beta_j$
+\item $|\hat{\beta}_{n,j}| = |\beta_j| + O(n^{-1/2}) = O(n^{-1/2}) \in [-a_n, a_n]$, for a zero component $\beta_j$
+\end{itemize}
 
 Then proceed as before:
 
@@ -163,22 +166,26 @@ Then proceed as before:
 
 Remarks:
 
-* Centering the residuals ensures the Bootstrap analogue of the condition $E[e_i]=0$
-* A rescaling factor $(1 - p/n) - 1/2$ is sometimes used (see Efron [1982]) to improve finite sample accuracy
-* It is possible to replace $\hat{\beta}_n$ by any other $\sqrt{n}$-consistent estimator of $\beta$, e.g. least squares
+\begin{itemize}
+\item Centering the residuals ensures the Bootstrap analogue of the condition $E[e_i]=0$
+\item A rescaling factor $(1 - p/n) - 1/2$ is sometimes used in the construction of the residuals (see Efron [1982]) to improve finite sample accuracy
+\item It is possible to replace $\hat{\beta}_n$ by any other $\sqrt{n}$-consistent estimator of $\beta$, e.g. least squares
+\end{itemize}
 
 
 ## Bootstrapping the Lasso estimator
 
 #### Consistency and the distributional approximation
 
-*Theorem 1: Consistency of modified Bootstrap*
+*Theorem 1: Consistency of Modified Bootstrap*
 
 Assume: 
 
-* (C1) $n^{-1} \sum_i x_ix_i^T \rightarrow C,$ p.d. matrix. Furthemore $n^{-1} \sum_i \|x_i\|^3 \rightarrow O(1)$.
-* (C2) $\lambda_n n^{-1/2} \rightarrow \lambda_0 \geq 0$.
-* (C3) errors $\epsilon_i$'s are iid with $E[\epsilon_i]=0$ and $VAR[\epsilon_i]=\sigma^2<\infty$.
+\begin{itemize}
+\item (C1) $n^{-1} \sum_i x_ix_i^T \rightarrow C,$ p.d. matrix. Furthemore $n^{-1} \sum_i \|x_i\|^3 \rightarrow O(1)$.
+\item (C2) $\lambda_n n^{-1/2} \rightarrow \lambda_0 \geq 0$.
+\item (C3) errors $\epsilon_i$'s are iid with $E[\epsilon_i]=0$ and $VAR[\epsilon_i]=\sigma^2<\infty$.
+\end{itemize}
 
 Then: $$\mathscr{P}(\tilde{G}_n, G_n) \rightarrow 0, \text{as } n \rightarrow \infty, \text{with probability } 1,$$
 
@@ -189,9 +196,40 @@ where $\mathscr{P}(\cdot,\cdot)$ denotes the Prohorov probability metric.
 
 Remarks:
 
-* Theorem 1 states strong consistency of the modified Bootstrap distribution estimator
-* Chatterjee and Lahiri [2010] shows that under the same set of regularity assumptions, if $\beta$ has at least one zero component and if $\hat{G}_n$ is the residual bootstrap estimate of $G_n$, then
-$$\mathscr{P}(\hat{G}_n, G_n) \rightarrow 0, \text{in probability, as } n \rightarrow \infty$$
-* From Theorem 1 it follows that the modified bootstrap method can be used to approximate the distribution of the Lasso estimator $T_n$ for any $\beta \in R^p$. Hence, it can be used to construct valid large sample confidence set estimators of $\beta$
+\begin{itemize}
+\item Chatterjee and Lahiri [2010] shows that under the same set of regularity assumptions, if $\beta$ has at least one zero component and if $\hat{G}_n$ is the residual bootstrap estimate of $G_n$, then
+$$\mathscr{P}(\hat{G}_n, G_n) \not\to 0, \text{in probability, as } n \rightarrow \infty$$
+\item Theorem 1 states strong consistency of the modified Bootstrap distribution estimator
+\item From Theorem 1 it follows that the modified bootstrap method can be used to approximate the distribution of the Lasso estimator $T_n$ for any $\beta \in R^p$. Hence, it can be used to construct valid large sample confidence set estimators of $\beta$
+\end{itemize}
 
 
+## Bootstrapping the Lasso estimator
+
+Definitions:
+
+\begin{itemize}
+\item let $t(\alpha)$ denote the $\alpha \in (0,1)$ quantile of $\|T_{\infty}\|$, where $T_{\infty}$ denotes the limiting random vector such that $T_n \rightarrow T_{\infty}$ and has distribution $G_{\infty}$.
+\item let $\hat{t}_n(\alpha)$ denote the $\alpha \in (0,1)$ quantile of the bootstrap distribution of $\|T_n^{**}\|$. Then the set $$I_{n,\alpha} \equiv \{ t \in R^p: \|t-\hat{\beta}_n \| \leq n^{-1/2} \hat{t}_n(\alpha) \}.$$
+\end{itemize}
+
+
+## Bootstrapping the Lasso estimator
+
+*Corollary 1: Modified Bootstrap Confidence Interval*
+
+Assume (C1), (C2) and (C3) hold. Then:
+
+\begin{enumerate}[i]
+\item if $\alpha \in (0,1)$ is such that $P(\|T_{\infty} \| \leq t(\alpha) + \eta) > \alpha, \forall \eta>0$, then for all $\beta \in R^p$: 
+\begin{equation}
+\label{CI_consistency}
+P(\beta \in I_{n,\alpha}) \rightarrow \alpha, \qquad \text{as } n \rightarrow \infty
+\end{equation}
+\item if there is at least one nonzero component of $\beta$, then (\ref{CI_consistency}) holds for all $\alpha \in (0,1)$.
+\end{enumerate}
+
+\begin{itemize}
+\item Corollary 1 justifies the use of the modified Bootstrap method to construct valid large sample confidence regions for $\beta$
+\item Corollary 1 can also be used to test the null hypothesis $H_0: \beta_j=0$ for all $j\in J$ for a given $J\subset \{1,...,p \}$
+\end{itemize}
