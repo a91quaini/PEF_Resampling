@@ -233,3 +233,16 @@ P(\beta \in I_{n,\alpha}) \rightarrow \alpha, \qquad \text{as } n \rightarrow \i
 \item Corollary 1 justifies the use of the modified Bootstrap method to construct valid large sample confidence regions for $\beta$
 \item Corollary 1 can also be used to test the null hypothesis $H_0: \beta_j=0$ for all $j\in J$ for a given $J\subset \{1,...,p \}$
 \end{itemize}
+
+
+## Bootstrapping the Lasso estimator
+
+Remarks:
+
+\begin{itemize}
+\item Leeb and P\"{o}tscher [2006, 2008] and P\"{o}tscher and Schneider [2009] show that it is impossible to consistently estimate the distribution function of the Lasso estimator in a uniform sense
+\item Problems arise expecially when some underlying nonzero parameters get close to zero as $n$ gets large
+\item Theorem 1 provides a method to obtain a consistent estimator in case the underlying parameters are fixed
+\item Andrews and Guggenberger [2009] show that uniform consistency is not necessary for producing uniformly valid confidence intervals
+\item Corollary 1 asserts that the modified Bootstrap method can control the asymptotic size of confidence intervals, however it is not clear if the latters are uniformly valid in the parameter values
+\end{itemize}
