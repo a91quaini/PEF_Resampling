@@ -55,7 +55,7 @@ Linear regression model with iid errors:
 y_i = x_i^T \beta + \epsilon_i, \qquad i=1,...,n
 \end{equation}
 
-Lasso estimator:
+\textbf{Lasso} estimator:
 \begin{equation}
 \hat{\beta}_n = argmin_{u \in R^p} \sum_{i=1}^n (y_i - x_i^T u)^2 
 + \lambda_n \sum_{j=1}^p |u_j|
@@ -109,7 +109,7 @@ Results and proposals in Chatterjee and Lahiri [2011]:
 
 #### background and motivation
 
-The residual Bootstrap method (standard in linear regression setting with nonrandom $x_i$, see Efron [1979], Freedman [1981]) proceeds as follows in the context of the Lasso (Knight and Fu [2000]):
+The \textbf{residual Bootstrap} method (standard in linear regression setting with nonrandom $x_i$, see Efron [1979], Freedman [1981]) proceeds as follows in the context of the Lasso (Knight and Fu [2000]):
 
 1. Consider the set of centered residuals $E = \{ e_i = \tilde{e}_i - \bar{e}, \text{for } i=1,...,n \}$, where $\bar{e} = n^{-1} \sum_i \tilde{e}_i$ and $\tilde{e}_i$'s are the residuals of the Lasso fit on the original sample.
 2. Construct $B$ bootstrap samples of size $n$ selecting with replacement form $E$: $E_b^* = \{e_{i,b}^*: i=1,...,n \}$ and compute $y_{i,b}^* = x_i^T \hat{\beta}_n + e_{i,b}^*$, for $i=1,...,n, \text{and } b=1,...,B$, where $\hat{\beta}_n$ is the Lasso estimator for the original sample.
@@ -178,7 +178,7 @@ Remarks:
 
 #### Consistency and the distributional approximation
 
-*Theorem 1: Consistency of Modified Bootstrap*
+\textbf{Theorem 1: Consistency of Modified Bootstrap}
 
 Assume: 
 
@@ -217,7 +217,7 @@ Definitions:
 
 ## Bootstrapping the Lasso estimator
 
-*Corollary 1: Modified Bootstrap Confidence Interval*
+\textbf{Corollary 1: Modified Bootstrap Confidence Interval}
 
 Assume (C1), (C2) and (C3) hold. Then:
 
@@ -253,7 +253,7 @@ Remarks:
 
 #### Bootstrap bias and variance estimation
 
-*Theorem 2: Bias and Variance Consistency*
+\textbf{Theorem 2: Bias and Variance Consistency}
 
 Assume (C1), (C2) and (C3) hold. Then with probability $1$:
 \begin{align}
@@ -270,14 +270,14 @@ E_*[T_n^{**}] \rightarrow E[T_{\infty}] \qquad \text{and} \\
 
 ## Bootsrapping the Adaptive Lasso estimator
 
-The adaptive Lasso estimator (Zou [2006]):
+The \textbf{adaptive Lasso} estimator (Zou [2006]):
 \begin{equation}
 \breve{\beta}_n = argmin_{u \in R^p} \sum_{i=1}^n (y_i - x_i^Tu)^2 + \lambda_n \sum_{j=1}^p \frac{|u_j|}{|\bar{\beta}_{j,n}|^{\gamma}},
 \end{equation}
 
 where $\bar{\beta}_n$ denote an initial consistent estimator of $\beta$ (e.g. least squares), $\lambda_n \geq 0$ is the penalty and $\gamma >0$.
 
-Oracle property (Zou [2006]):
+\textbf{Oracle property} (Zou [2006]):
 \begin{align}
 P(B_n = A) \rightarrow 1, \quad \text{as } n \rightarrow 1 \\
 \sqrt{n}(\breve{\beta}_n^{nz} - \beta^{nz}) \rightarrow N(0, \sigma^2 C_{nz})
@@ -308,4 +308,24 @@ Remarks:
 \item the penalty of the adaptive Lasso incorporates a built-in soft-thresholding for the zero parameters
 \item Hence, the Bootstrap procedure just described does not need an initial truncation as it is the case for the Lasso
 \end{itemize}
+
+Denote:
+\begin{itemize}
+\item $\breve{T}_n \equiv \sqrt{n}(\breve{\beta}_n - \beta)$ with distribution $H_n$, where $H_n(x)= P(\breve{T}_n \leq x), x \in R$
+\item $\breve{T}_n^+ \equiv \sqrt{n}(\breve{\beta}_n^+ - \breve{\beta}_n)$ with distribution $H_n^+$ conditional on the $\epsilon_i$'s
+\end{itemize}
+
+
+## Bootsrapping the Adaptive Lasso estimator
+
+\textbf{Theorem 3:}
+
+Assume (C1), and (C3) hold and suppose
+\begin{equation}
+\frac{\lambda_n}{\sqrt{n}} \rightarrow 0 \quad \text{and} \quad \lambda_n n^{(\gamma - 1)/2} \rightarrow \infty.
+\end{equation}
+Then,
+\begin{equation}
+\mathscr{P}(\hat{H}_n, H_n) \overset{P}\rightarrow 0, \quad \text{as } n \rightarrow \infty,
+\end{equation}
 
