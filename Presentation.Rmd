@@ -7,6 +7,7 @@ output:
 header-includes:
    - \usepackage{mathrsfs}
    - \usepackage{bbm}
+   - \usepackage{amsmath}
 ---
 
 ```{r setup, include=FALSE}
@@ -246,3 +247,48 @@ Remarks:
 \item Andrews and Guggenberger [2009] show that uniform consistency is not necessary for producing uniformly valid confidence intervals
 \item Corollary 1 asserts that the modified Bootstrap method can control the asymptotic size of confidence intervals, however it is not clear if the latters are uniformly valid in the parameter values
 \end{itemize}
+
+
+## Bootstrapping the Lasso estimator
+
+#### Bootstrap bias and variance estimation
+
+*Theorem 2: Bias and Variance Consistency*
+
+Assume (C1), (C2) and (C3) hold. Then with probability $1$:
+\begin{align}
+E_*[T_n^{**}] \rightarrow E[T_{\infty}] \qquad \text{and} \\
+(VAR_*[T_n^{**}])_{p \times p} \rightarrow (VAR_*[T_{\infty}])_{p \times p}
+\end{align}
+
+\begin{itemize}
+\item for $\lambda_0 \neq 0$ in assumption (C2), $T_n$ may be asymptotically biased and standard MSE estimation methods are unreliable
+\item The modified Bootstrap method produces strongly consistent estimators of the asymptotic bias and variance of $T_n$
+\item hence, Theorem 2 allows to estimate the MSE of a Lasso estimate and quantify the associated uncertainty for all values of $\beta$
+\end{itemize}
+
+
+## Bootsrapping the Adaptive Lasso estimator
+
+The adaptive Lasso estimator (Zou [2006]):
+\begin{equation}
+\breve{\beta}_n = argmin_{u \in R^p} \sum_{i=1}^n (y_i - x_i^Tu)^2 + \lambda_n \sum_{j=1}^p \frac{|u_j|}{|\bar{\beta}_{j,n}|^{\gamma}},
+\end{equation}
+
+where $\bar{\beta}_n$ denote an initial estimator of $\beta$ (e.g. least squares), $\lambda_n \geq 0$ is the penalty and $\gamma >0$.
+
+Oracle property (Zou [2006]):
+\begin{align}
+P(B_n = A) \rightarrow 1, \quad \text{as } n \rightarrow 1 \\
+\sqrt{n}(\breve{\beta}_n^{nz} - \beta^{nz}) \rightarrow N(0, \sigma^2 C_{nz})
+\end{align}
+
+where $A = \{ j:\beta_j = 0 \}$, $B_n = \{j: \breve{\beta}_{j,n} = 0 \}$ and $\sigma^2 C_{nz}$ is the var-cov matrix between nonzero estimated and underlying parameters 
+
+
+## Bootsrapping the Adaptive Lasso estimator
+
+#### A residual Bootstrap method for Adaptive Lasso
+
+
+
