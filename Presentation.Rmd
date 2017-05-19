@@ -63,7 +63,7 @@ P. Hall, E. R. Lee and B. U. Park [2009]
     + Variance estimation
 
 
-## Introduction
+## 1. Introduction
 
 Linear regression model with iid errors:
 \begin{equation}
@@ -80,7 +80,7 @@ y_i = x_i^T \beta + \epsilon_i, \qquad i=1,...,n
   + model consistency (Wainwright [2006], Zhao and Yu [2006] and Zou [2006])
   + estimation consistency (Knight and Fu [2000])
 
-## Introduction
+## 1. Introduction
 
 Problems:  
 
@@ -94,7 +94,7 @@ Problems:
     + proposals of Tibshirani [1996], Fan and Li [2001] and Fan and Peng [2004] only provide CI for underlying non-zero parameters
 
 
-## Introduction
+## 1. Introduction
 
 Results and proposals in Chatterjee and Lahiri [2011]:  
 
@@ -106,19 +106,19 @@ Results and proposals in Chatterjee and Lahiri [2011]:
     + the modified Bootstrap method provides consistent estimate of the variance of the Lasso estimator for both zero and non-zero parameter components
 
 
-## Introduction
+## 1. Introduction
 
 3. choice of the regularization parameter $\lambda_n$
     + accuracy of the Lasso critically depends on the regularization parameter
     + the modified Bootstrap is consistent for the MSE of the Lasso, hence it can be used for selecting $\lambda_n$
     
 4. Adaptive Lasso estimator (Zou [2006])
-    + adaptive weights are used for penalizing different coefficients in the $L_1$ penalty
+    + adaptive weights are used for penalizing differently the coefficients in the $L_1$ penalty
     + it enjoys the oracle property, i.e. performs as well as if the true underlying model were given in advance
     + Chatterjee and Lahiri [2011] show that the simple residual Bootstrap can consistently estimate the distribution of the adaptive Lasso estimator
     
 
-## The Modified Bootstrap method
+## 2. The Modified Bootstrap method
 
 #### background and motivation
 
@@ -128,7 +128,7 @@ The \textbf{residual Bootstrap} method (standard in linear regression setting wi
 2. Construct $B$ bootstrap samples of size $n$ selecting with replacement form $E$: $E_b^* = \{e_{i,b}^*: i=1,...,n \}$ and compute $y_{i,b}^* = x_i^T \hat{\beta}_n + e_{i,b}^*$, for $i=1,...,n, \text{and } b=1,...,B$, where $\hat{\beta}_n$ is the Lasso estimator for the original sample.
 
 
-## The Modified Bootstrap method
+## 2. The Modified Bootstrap method
 
 3. Compute the bootstrap version of $T_n = n^{1/2}(\hat{\beta}_n - \beta)$, i.e. $T_n^* = n^{1/2}(\hat{\beta}_{n,b}^* - \hat{\beta}_n)$, where $\hat{\beta}_{n,b}^*$ is the Lasso estimator for bootstrap sample $b$. 
 4. The residual Bootstrap estimator of the distribution $G_n$ of $T_n$ is $\hat{G}_n(B) = P_*(T_n^* \in B)$, where $B \in \mathscr{B}(R^p)$ and $P_*$ is the probability of $T_n^*$ given errors $\epsilon_i$'s.
@@ -141,7 +141,7 @@ Chatterjee and Lahiri [2010] show that:
 \end{itemize}
 
 
-## The Modified Bootstrap method
+## 2. The Modified Bootstrap method
 
 #### A Modified Bootstrap method
 
@@ -159,7 +159,7 @@ To this end:
 \end{equation}
 
 
-## The Modified Bootstrap method
+## 2. The Modified Bootstrap method
 
 Note that with probability tending to 1 (as $n \rightarrow \infty$):
 
@@ -174,7 +174,7 @@ Then proceed as before:
 4. Construct $B$ bootstrap samples of size $n$ selecting with replacement form $R$: $R_b^{**} = \{r_{i,b}^{**}: i=1,...,n \}$ and compute $y_{i,b}^{**} = x_i^T \tilde{\beta}_n + r_{i,b}^{**}$, for $i=1,...,n, \text{and } b=1,...,B$, where $\tilde{\beta}_n$ is the modified Lasso estimator for the original sample.
 
 
-## The Modified Bootstrap method
+## 2. The Modified Bootstrap method
 
 5. Compute the bootstrap version of $T_n = n^{1/2}(\hat{\beta}_n - \beta)$, i.e. $T_n^{**} = n^{1/2}(\hat{\beta}_{n,b}^{**} - \tilde{\beta}_n)$, where $\hat{\beta}_{n,b}^{**}$ is the Lasso estimator (not the modified one) for bootstrap sample $b$. 
 6. The residual Bootstrap estimator of the distribution $G_n$ of $T_n$ is $\tilde{G}_n(B) = P_{**}(T_n^{**} \in B)$, where $B \in \mathscr{B}(R^p)$ and $P_{**}$ is the probability of $T_n^{**}$ given errors $\epsilon_i$'s.
@@ -188,7 +188,7 @@ Remarks:
 \end{itemize}
 
 
-## Bootstrapping the Lasso estimator
+## 3. Bootstrapping the Lasso estimator
 
 #### Consistency and the distributional approximation
 
@@ -207,7 +207,7 @@ Then: $$\mathscr{P}(\tilde{G}_n, G_n) \rightarrow 0, \text{as } n \rightarrow \i
 where $\mathscr{P}(\cdot,\cdot)$ denotes the Prohorov probability metric.
 
 
-## Bootstrapping the Lasso estimator
+## 3. Bootstrapping the Lasso estimator
 
 Remarks:
 
@@ -219,7 +219,7 @@ $$\mathscr{P}(\hat{G}_n, G_n) \not\to 0, \text{in probability, as } n \rightarro
 \end{itemize}
 
 
-## Bootstrapping the Lasso estimator
+## 3. Bootstrapping the Lasso estimator
 
 Definitions:
 
@@ -229,7 +229,7 @@ Definitions:
 \end{itemize}
 
 
-## Bootstrapping the Lasso estimator
+## 3. Bootstrapping the Lasso estimator
 
 \textbf{Corollary 1: Modified Bootstrap Confidence Interval}
 
@@ -250,7 +250,7 @@ P(\beta \in I_{n,\alpha}) \rightarrow \alpha, \qquad \text{as } n \rightarrow \i
 \end{itemize}
 
 
-## Bootstrapping the Lasso estimator
+## 3. Bootstrapping the Lasso estimator
 
 Remarks:
 
@@ -263,7 +263,7 @@ Remarks:
 \end{itemize}
 
 
-## Bootstrapping the Lasso estimator
+## 3. Bootstrapping the Lasso estimator
 
 #### Bootstrap bias and variance estimation
 
@@ -282,7 +282,7 @@ E_*[T_n^{**}] \rightarrow E[T_{\infty}] \qquad \text{and} \\
 \end{itemize}
 
 
-## Bootsrapping the Adaptive Lasso estimator
+## 3. Bootsrapping the Adaptive Lasso estimator
 
 The \textbf{adaptive Lasso} estimator (Zou [2006]):
 \begin{equation}
@@ -300,7 +300,7 @@ P(B_n = A) \rightarrow 1, \quad \text{as } n \rightarrow 1 \\
 where $A = \{ j:\beta_j = 0 \}$, $B_n = \{j: \breve{\beta}_{j,n} = 0 \}$ and $\sigma^2 C_{nz}$ is the var-cov matrix between nonzero estimated and underlying parameters 
 
 
-## Bootsrapping the Adaptive Lasso estimator
+## 3. Bootsrapping the Adaptive Lasso estimator
 
 #### A residual Bootstrap method for Adaptive Lasso
 
@@ -315,7 +315,7 @@ where $y_i^+ = x_i^T\breve{\beta}_n + \epsilon_i^+, i=1,...,n$, $\epsilon_i^+$'s
 \end{itemize}
 
 
-## Bootsrapping the Adaptive Lasso estimator
+## 4. Bootsrapping the Adaptive Lasso estimator
 
 Remarks:
 \begin{itemize}
@@ -330,7 +330,7 @@ Denote:
 \end{itemize}
 
 
-## Bootsrapping the Adaptive Lasso estimator
+## 4. Bootsrapping the Adaptive Lasso estimator
 
 \textbf{Theorem 3:}
 
@@ -351,7 +351,7 @@ Remarks:
 \end{itemize}
 
 
-## Bootsrapping the Adaptive Lasso estimator
+## 4. Bootsrapping the Adaptive Lasso estimator
 
 \begin{itemize}
 \item estimation of the MSE of the adaptive Lasso estimator can be difficult
@@ -366,7 +366,7 @@ MSE_*(\breve{T}_n^+) - MSE(\breve{T}_n) \overset{P}\rightarrow 0, \quad \text{as
 \end{equation}
 
 
-## Data-based choice of the regularization parameter
+## 5. Data-based choice of the regularization parameter
 
 #### The optimal regularization parameter
 
@@ -379,7 +379,7 @@ Remarks:
 \end{itemize}
 
 
-## Data-based choice of the regularization parameter
+## 5. Data-based choice of the regularization parameter
 
 Then define the \textbf{optimal penalization} parameter as
 \begin{equation}
@@ -390,7 +390,7 @@ where $\phi(\lambda_0) = E\|T_{\infty}\|^2$.
 * Thus, choosing $\lambda_0 = \lambda_0^{opt}$ yelds a Lasso estimator that minimizes the $MSE$ in large samples.
 
 
-## Data-based choice of the regularization parameter
+## 5. Data-based choice of the regularization parameter
 
 #### Data-based selection of the optimal regularization parameter
 
@@ -409,7 +409,7 @@ Therefore, an accurate estimator in large sample of $\lambda_0^{opt}$ is the Boo
 \end{equation}
 
 
-## Data-based choice of the regularization parameter
+## 5. Data-based choice of the regularization parameter
 
 #### Jackknife-After-Bootstrap based choice of the regularization parameter
 
@@ -421,7 +421,7 @@ The authors propose to estimate the thresholding parameter $a$ via Jackknife-Aft
 \end{itemize}
 
 
-## Numerical results
+## 6. Numerical results
 
 #### Choice of optimal penalization and thresholding parameters
 
@@ -437,7 +437,7 @@ For the numerical results regarding the choice of the regularization and thresho
 \end{itemize}
 
 
-## Numerical results
+## 6. Numerical results
 
 Figures (reference) show the behaviour of the naive residual Bootstrap (NB) and the modified Bootstrap (MB) estimates of the optimal $\lambda_0$ in Case (i) and (ii), respectively.
 
@@ -446,22 +446,26 @@ Note:
 \item the vertical solid line represents the true optimal $\lambda_0$
 \item MB estimates are much better than the NB for Case (i)
 \item in Case (ii) the NB seem to perform better than the MB
-\item however if we stratify the performance of the MB by different choices of $a$ we sometimes get much better results
+\item however if the performance of the MB is stratified for different values of $a$, in some cases it achieves much better results
 \item the MB is very sensible to the choice of $a$, as it impacts the recovery of true nonzero parameters
 \end{itemize}
 
 
-## Numerical results
+## 6. Numerical results
 
-\includegraphics[scale=0.4]{Case1}
+#### Figure 1
 
-
-## Numerical results
-
-\includegraphics[scale=0.4]{Case2}
+\includegraphics[scale=0.35]{Case1}
 
 
-## Numerical results
+## 6. Numerical results
+
+#### Figure 2
+
+\includegraphics[scale=0.35]{Case2}
+
+
+## 6. Numerical results
 
 Regarding the choice of the threshold parameter $a$, the authors consider a grid of six values over which the optimum values of $a$ are computed.
 
@@ -469,13 +473,13 @@ Numerical results are found in Table 1 in the paper.
 
 The main results are:
 \begin{itemize}
-\item the JAB estimates of $a$ are very good for Case (i) but deteriorates for the other two cases
+\item the JAB estimates of $a$ are very good for Case (i) but deteriorate for the other two cases
 \item the choice of the grid is very important
 \item the JAB method is good in situations where $\beta$ has distinct large nonzero coefficients
 \end{itemize}
 
 
-## Numerical results
+## 6. Numerical results
 
 #### Coverage accuracy of confidence regions
 
@@ -491,11 +495,11 @@ The main findings are:
 \end{itemize}
 
 
-## Numerical results
+## 6. Numerical results
 
 #### Variance estimation
 
-The authors then compare the NB, the MB and the m-out-of-n Bootstrap (MNB) (Hall, Lee and Park [2009]) and the sandwich formula (see Zou [2006] and Feng and Peng [2004]) for the estimating the variance of the Lasso estimator.
+The authors then compare the NB, the MB, the m-out-of-n Bootstrap (MNB) (Hall, Lee and Park [2009]) and the sandwich formula (see Zou [2006] and Feng and Peng [2004]) for estimating the variance of the Lasso estimator.
 
 Numerical results are reported in Table 5 and 6 in the paper.
 
