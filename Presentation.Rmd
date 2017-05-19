@@ -18,15 +18,14 @@ knitr::opts_chunk$set(echo = FALSE)
 ## Presentation
 
 
-* _Presentation of:_  
+_Presentation of:_  
 "Bootstrapping Lasso Estimator" -- A. Chatterjee, S. N. Lahiri [2011], JASA.  
 
-* _for PEF UNISG course:_  
+_for PEF UNISG course:_  
 "Resampling methods and forecasting" -- L. Camponovo
 
-* _Additional literature:_   
-1  
-2
+_Additional literature:_   
+    + Chattarjee, Lahiri [2010]
 
 
 ## Outline
@@ -41,11 +40,18 @@ knitr::opts_chunk$set(echo = FALSE)
 4. Bootstrapping the Adaptive Lasso estimator
     + A residual Bootstrap method for the Adaptive Lasso estimator
     + Main results
+
+    
+## Outline
+
 5. Data-based choice of the regularization parameter
     + The optimal regularization parameter
     + Data-based selection of the optimal regularization parameter
     + Jackknife-After-Bootstrap based choice of the regularization parameter
 6. Numerical results
+    + Choice of optimal penalization and thresholding parameters
+    + Coverage accuracy of confidence regions
+    + Variance estimation
 
 
 ## Introduction
@@ -70,10 +76,9 @@ y_i = x_i^T \beta + \epsilon_i, \qquad i=1,...,n
 Problems:  
 
 1. Consistency
-    + Knight and Fu [2000] show that the limiting distribution of the Lasso estimator is complicated
+    + Knight and Fu [2000] show that the limiting distribution of the Lasso estimator is complex in the situation of sparse underlying parameter vector
     + in practice alternative approximations are needed to carry on inference for the Lasso
-    + The two autors consider the residual-based Bootstrap method
-    + Chatterjee and Lahiri [2010] show that the Bootstrapped Lasso estimator is inconsistent whenever at least one component of the parameter vector is zero
+    + Chatterjee and Lahiri [2010] show that the Bootstrapped Lasso estimator based on the residual Bootstrap method is inconsistent whenever at least one component of the parameter vector is zero
 
 2. Confidence intervals and testing
     + proposals of Tibshirani [1996] and Osborne et Al. [2000] have the drawback of considering the Lasso an approximately linear transformation
@@ -95,14 +100,13 @@ Results and proposals in Chatterjee and Lahiri [2011]:
 ## Introduction
 
 3. choice of the regularization parameter $\lambda_n$
-    + accuracy of the lasso critically depends on the regularization parameter
-    + the modified Bootstrap is consistent for the MSE of the Lasso
-    + the modified Bootstrap estimator of the MSE can be used for the choice of $\lambda_n$
+    + accuracy of the Lasso critically depends on the regularization parameter
+    + the modified Bootstrap is consistent for the MSE of the Lasso, hence it can be used for selecting $\lambda_n$
     
 4. Adaptive Lasso estimator (Zou [2006])
     + adaptive weights are used for penalizing different coefficients in the $L_1$ penalty
     + it enjoys the oracle property, i.e. performs as well as if the true underlying model were given in advance
-    + the authors show that the simple residual Bootstrap can consistently estimate the distribution of the adaptive Lasso estimator
+    + Chatterjee and Lahiri [2011] show that the simple residual Bootstrap can consistently estimate the distribution of the adaptive Lasso estimator
     
 
 ## The Modified Bootstrap method
@@ -141,6 +145,7 @@ To this end:
 1. Form a sequence $\{a_n\}$ of real numbers such that $a_n + (n^{-1/2} log(n)) a_n^{-1} \rightarrow 0$ asymptotically.
 2. Threshold the components of the Lasso estimator $\beta_n$ at $a_n$, and define the modified Lasso estimator 
 \begin{equation}
+\label{ModLasso}
 \tilde{\beta}_{n,j} = \beta_{n,j} \mathbbm{1}(\beta_{n,j} \geq a_n), \text{for } j=1,...,p.
 \end{equation}
 
@@ -162,7 +167,7 @@ Then proceed as before:
 
 ## The Modified Bootstrap method
 
-5. Compute the bootstrap version of $T_n = n^{1/2}(\hat{\beta}_n - \beta)$, i.e. $T_n^{**} = n^{1/2}(\hat{\beta}_{n,b}^{**} - \tilde{\beta}_n)$, where $\hat{\beta}_{n,b}^{**}$ is the Lasso estimator for bootstrap sample $b$. 
+5. Compute the bootstrap version of $T_n = n^{1/2}(\hat{\beta}_n - \beta)$, i.e. $T_n^{**} = n^{1/2}(\hat{\beta}_{n,b}^{**} - \tilde{\beta}_n)$, where $\hat{\beta}_{n,b}^{**}$ is the Lasso estimator (not the modified one) for bootstrap sample $b$. 
 6. The residual Bootstrap estimator of the distribution $G_n$ of $T_n$ is $\tilde{G}_n(B) = P_{**}(T_n^{**} \in B)$, where $B \in \mathscr{B}(R^p)$ and $P_{**}$ is the probability of $T_n^{**}$ given errors $\epsilon_i$'s.
 
 Remarks:
@@ -369,7 +374,7 @@ Remarks:
 
 Then define the \textbf{optimal penalization} parameter as
 \begin{equation}
-\lambda_0^{opt} \equiv \phi(\lambda_0)
+\lambda_0^{opt} \equiv argmin \phi(\lambda_0)
 \end{equation}
 where $\phi(\lambda_0) = E\|T_{\infty}\|^2$.
 
@@ -379,3 +384,114 @@ where $\phi(\lambda_0) = E\|T_{\infty}\|^2$.
 ## Data-based choice of the regularization parameter
 
 #### Data-based selection of the optimal regularization parameter
+
+$\lambda_0$ can be estimated using the modified bootstrap:
+\begin{itemize}
+\item for any $\lambda_0 \in [0, \infty)$ and thresholding value $a \in (0, \infty)$ (as defined in (\ref{ModLasso})), rewrite $T_n^{**} \equiv T_n^{**}(\lambda_0,a)$
+\item the modified Bootstrap estimator of $\phi(\lambda_0)$ is \begin{equation}
+\hat{\phi}_n(\lambda_0,a) \equiv E_* \| T_n^{**}(\lambda_0,a) \|^2
+\end{equation}
+\item by Theorem 1, $\hat{\phi}_n(\lambda_0,a)$ is a strongly consistent estimator of $\phi(\lambda_0)$
+\end{itemize}
+
+Therefore, an accurate estimator in large sample of $\lambda_0^{opt}$ is the Bootstrap estimator:
+\begin{equation}
+\lambda_{0,n}^* = argmin_{\lambda_0,a} \hat{\phi}_n(\lambda_0,a)
+\end{equation}
+
+
+## Data-based choice of the regularization parameter
+
+#### Jackknife-After-Bootstrap based choice of the regularization parameter
+
+The authors propose to estimate the thresholding parameter $a$ via Jackknife-After-Bootstrap (JAB, see Efron [1992]). The basic idea of the method is:
+\begin{itemize}
+\item compute replicates of the Bootstrap estimator $\hat{\phi}_n(\lambda_0,a)$ by means of delete-1 JAB over the Bootstrap samples $\{T_n^{**}(b:\lambda_0,a): b=1,...,B \}$
+\item construct an estimate of the error of the Bootstrap estimator $\hat{\phi}_n(\lambda_0,a)$ based on the JAB replicates
+\item select a thresholding value $a$ that minimize this estimate of error over all possible values of $\lambda_0$ and $a$
+\end{itemize}
+
+
+## Numerical results
+
+#### Choice of optimal penalization and thresholding parameters
+
+For the numerical results regarding the choice of the regularization and thresholding parameters the authors consider:
+\begin{itemize}
+\item fixed-design matrix and errors generated by independent standard normal distribution with sample size $n=250$
+\item $p=10$ overall regression coefficients which $6$ are nonzero organized in three Cases:
+  \begin{enumerate}[i]
+  \item large nonzero coefficients
+  \item some small nonzero coefficients
+  \item some nonzero coefficients shrinking as $n$ gets large
+  \end{enumerate}
+\end{itemize}
+
+
+## Numerical results
+
+Figures (reference) show the behaviour of the naive residual Bootstrap (NB) and the modified Bootstrap (MB) estimates of the optimal $\lambda_0$ in Case (i) and (ii), respectively.
+
+Note:
+\begin{itemize}
+\item the vertical solid line represents the true optimal $\lambda_0$
+\item MB estimates are much better than the NB for Case (i)
+\item in Case (ii) the NB seem to perform better than the MB
+\item however if we stratify the performance of the MB by different choices of $a$ we sometimes get much better results
+\item the MB is very sensible to the choice of $a$, as it impacts the recovery of true nonzero parameters
+\end{itemize}
+
+
+## Numerical results
+
+Figure 1
+
+## Numerical results
+
+Figure 2
+
+## Numerical results
+
+Regarding the choice of the threshold parameter $a$, the authors consider a grid of six values over which the optimum values of $a$ are computed.
+
+Numerical results are found in Table 1 in the paper. 
+
+The main results are:
+\begin{itemize}
+\item the JAB estimates of $a$ are very good for Case (i) but deteriorates for the other two cases
+\item the choice of the grid is very important
+\item the JAB method is good in situations where $\beta$ has distinct large nonzero coefficients
+\end{itemize}
+
+
+## Numerical results
+
+#### Coverage accuracy of confidence regions
+
+The authors compare the finite sample performance of the confidence regions for $\beta$ obtained by using the naive and the modified Bootstrap procedures.
+
+Numerical results are found in Tables 2 -- 4 in the paper. 
+
+The main findings are:
+\begin{itemize}
+\item both methods perform well in terms of achieving the desired nominal coverage rate for all three Cases
+\item the inconsistency of the NB does not have an effect on the coverage accuracy of the confidence regions
+\item however the inconsistency of the NB makes it an unreliable choice
+\end{itemize}
+
+
+## Numerical results
+
+#### Variance estimation
+
+The authors then compare the NB, the MB and the m-out-of-n Bootstrap (MNB) (Hall, Lee and Park [2009]) and the sandwich formula (see Zou [2006] and Feng and Peng [2004]) for the estimating the variance of the Lasso estimator.
+
+Numerical results are reported in Table 5 and 6 in the paper.
+
+The main findings are:
+\begin{itemize}
+\item NB and MB have very comparable results
+\item MB has some advantages over the NB when the underlying value of the parameter is zero
+\item MNB has very poor performances, which gradually improve as $m$ (the Bootstrap sample size) increases
+\item the sandwich estimator has very good performances, but they can be tremendously impacted by extreme observations in the data
+\end{itemize}
