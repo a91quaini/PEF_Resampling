@@ -8,6 +8,8 @@ header-includes:
    - \usepackage{mathrsfs}
    - \usepackage{bbm}
    - \usepackage{amsmath}
+   - \usepackage{graphicx}
+   - \graphicspath{{Images/}}
 ---
 
 ```{r setup, include=FALSE}
@@ -19,13 +21,20 @@ knitr::opts_chunk$set(echo = FALSE)
 
 
 _Presentation of:_  
-"Bootstrapping Lasso Estimator" -- A. Chatterjee, S. N. Lahiri [2011], JASA.  
+
+* "Bootstrapping Lasso Estimator" -- A. Chatterjee, S. N. Lahiri [2011], JASA.  
 
 _for PEF UNISG course:_  
-"Resampling methods and forecasting" -- L. Camponovo
 
-_Additional literature:_   
-    + Chattarjee, Lahiri [2010]
+* "Resampling methods and forecasting" -- L. Camponovo
+
+_Complementary literature:_ 
+
+* "Asymptotics properties of the residual Bootstrap
+for Lasso estimators" -- A. Chattarjee, S. N. Lahiri [2010]
+
+* "Bootstrap-based penalty choice for the Lasso, achieving oracle performance"
+P. Hall, E. R. Lee and B. U. Park [2009]
 
 
 ## Outline
@@ -444,11 +453,13 @@ Note:
 
 ## Numerical results
 
-Figure 1
+\includegraphics[scale=0.4]{Case1}
+
 
 ## Numerical results
 
-Figure 2
+\includegraphics[scale=0.4]{Case2}
+
 
 ## Numerical results
 
